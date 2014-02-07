@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="format.xsl" ?>
+<ValidateRule Name="卡號及手機號碼資料">
+    <DuplicateDetection>
+
+        <Detector Name="學號">
+            <Field Name="學號" />
+        </Detector>
+
+        <Detector Name="卡號" IsImportKey="False">
+            <Field Name="卡號" />
+        </Detector>
+
+    </DuplicateDetection>
+    <FieldList>
+        <!--
+        系統編號(自動產生，可看不可以改)、學號、班級、座號、姓名、卡號、簡訊手機。使用者可以匯入批次修改。可以系統編號、學號做為匯入的鍵值。
+卡號不得重覆。
+        -->
+
+        <Field Required="True" EmptyAlsoValidate="False" Name="學號" Description="學號">
+            
+        </Field>
+
+        <Field Required="False" Name="行動電話" Description="行動電話">
+
+        </Field>
+
+        <Field Required="False" Name="卡號" Description="卡號">
+
+        </Field>
+        
+    </FieldList>
+    <ValidatorList>
+        <FieldValidator Name="不可空白" Type="STRINGLENGTH">
+            <MinLength>1</MinLength>
+        </FieldValidator>
+        
+        <FieldValidator Name="Integer極限" Type="Integer">
+            <MinValue>0</MinValue>
+            <MaxValue>2000000000</MaxValue>
+        </FieldValidator>
+
+        <RowValidator Name="檢查卡號是否重覆" Type="CARDNOCHECK_CHT" />
+
+    </ValidatorList>
+    <RowValidate>
+        <Validate AutoCorrect="False" Description="檢查「卡號」不可重覆。" ErrorType="Error" Validator="檢查卡號是否重覆" When=""/>
+    </RowValidate>
+    <ConditionList/>
+</ValidateRule>

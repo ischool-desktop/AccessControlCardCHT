@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0313DD99-7EFB-40C2-AA3C-C538B238810C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AccessControlCardCHT</RootNamespace>
+    <AssemblyName>AccessControlCardCHT</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=4.3.0.0, Culture=neutral, PublicKeyToken=9a40d5a4b59e5256, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Aspose.Cells.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Campus.DocumentValidator, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Campus.DocumentValidator.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Campus.Import, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Campus.Import.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Campus.Report, Version=1.0.0.11, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Campus.Report.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Campus.Windows, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Campus.Windows.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=9.5.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\DevComponents.DotNetBar2.dll</HintPath>
+    </Reference>
+    <Reference Include="FISCA, Version=2.1.4.8, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Authentication, Version=1.9.0.16, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.Authentication.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Data, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.DSAUtil, Version=3.9.0.10, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.DSAUtil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.LogAgent, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.LogAgent.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Permission, Version=1.2.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.Permission.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Presentation, Version=1.1.0.19, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.Presentation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.UDT, Version=1.0.2.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.UDT.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="K12.Data, Version=2.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\K12.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="K12.Presentation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\K12.Presentation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CheckFrom\SMSInquirtRecord.cs" />
+    <Compile Include="CheckFrom\SMSSendInquiry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckFrom\SMSSendInquiry.designer.cs">
+      <DependentUpon>SMSSendInquiry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\NoAccessControlRecord.cs" />
+    <Compile Include="DAL\SMSRecord.cs" />
+    <Compile Include="DAL\StudentCard.cs" />
+    <Compile Include="frmAccessControlMapping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAccessControlMapping.designer.cs">
+      <DependentUpon>frmAccessControlMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQueryNoAccessControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQueryNoAccessControl.designer.cs">
+      <DependentUpon>frmQueryNoAccessControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQuerySMS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQuerySMS.designer.cs">
+      <DependentUpon>frmQuerySMS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettings.designer.cs">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportAccessControlCard.cs" />
+    <Compile Include="ImportAccessControlCard_newStudent.cs" />
+    <Compile Include="LogObj.cs" />
+    <Compile Include="Permissions.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\AccessExtendRecord.cs" />
+    <Compile Include="StudentExtendControls\AccessStudentItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\AccessStudentItem.designer.cs">
+      <DependentUpon>AccessStudentItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\DetailContentBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\DetailContentBase.designer.cs">
+      <DependentUpon>DetailContentBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentExtendControls\ListViewEX.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UDT\AccessControlCard.cs" />
+    <Compile Include="UDT\AccessControlCardHistory.cs" />
+    <Compile Include="UDT\Setting.cs" />
+    <Compile Include="Utility.cs" />
+    <Compile Include="Utility\CompleteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utility\CompleteForm.designer.cs">
+      <DependentUpon>CompleteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\DataGridViewExport.cs" />
+    <Compile Include="Utility\SortableBindingList.cs" />
+    <Compile Include="Utility\StudentCardBindingList.cs" />
+    <Compile Include="ValidationHelper.cs" />
+    <Compile Include="Validator\CardNoCheck.cs" />
+    <Compile Include="Validator\CardNoCheck_double.cs" />
+    <Compile Include="Validator\FieldValidatorFactory.cs" />
+    <Compile Include="Validator\FieldValidator\StudentIDExistenceValidator.cs" />
+    <Compile Include="Validator\FieldValidator\StudentIDStatusValidator.cs" />
+    <Compile Include="Validator\FieldValidator\StudentNumberExistenceValidator.cs" />
+    <Compile Include="Validator\FieldValidator\StudentNumberRepeatValidator.cs" />
+    <Compile Include="Validator\FieldValidator\StudentNumberStatusValidator.cs" />
+    <Compile Include="Validator\RowValidatorFactory.cs" />
+    <Compile Include="Validator\StudentCardNo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Library\Aspose.Cells.dll" />
+    <Content Include="Library\Aspose.Cells.xml" />
+    <Content Include="Library\Campus.DocumentValidator.dll" />
+    <Content Include="Library\Campus.DocumentValidator.pdb" />
+    <Content Include="Library\Campus.DocumentValidator.xml" />
+    <Content Include="Library\Campus.Import.dll" />
+    <Content Include="Library\Campus.Import.pdb" />
+    <Content Include="Library\Campus.Import.xml" />
+    <Content Include="Library\Campus.Report.dll" />
+    <Content Include="Library\Campus.Report.pdb" />
+    <Content Include="Library\Campus.Windows.dll" />
+    <Content Include="Library\Campus.Windows.pdb" />
+    <Content Include="Library\DevComponents.DotNetBar2.dll" />
+    <Content Include="Library\DevComponents.DotNetBar2.xml" />
+    <Content Include="Library\FISCA.Authentication.dll" />
+    <Content Include="Library\FISCA.Authentication.pdb" />
+    <Content Include="Library\FISCA.Authentication.xml" />
+    <Content Include="Library\FISCA.Data.dll" />
+    <Content Include="Library\FISCA.Data.pdb" />
+    <Content Include="Library\FISCA.Data.xml" />
+    <Content Include="Library\FISCA.dll" />
+    <Content Include="Library\FISCA.DSAUtil.dll" />
+    <Content Include="Library\FISCA.DSAUtil.pdb" />
+    <Content Include="Library\FISCA.DSAUtil.xml" />
+    <Content Include="Library\FISCA.LogAgent.dll" />
+    <Content Include="Library\FISCA.LogAgent.pdb" />
+    <Content Include="Library\FISCA.LogAgent.xml" />
+    <Content Include="Library\FISCA.pdb" />
+    <Content Include="Library\FISCA.Permission.dll" />
+    <Content Include="Library\FISCA.Permission.pdb" />
+    <Content Include="Library\FISCA.Permission.xml" />
+    <Content Include="Library\FISCA.Presentation.dll" />
+    <Content Include="Library\FISCA.Presentation.pdb" />
+    <Content Include="Library\FISCA.Presentation.xml" />
+    <Content Include="Library\FISCA.UDT.dll" />
+    <Content Include="Library\FISCA.UDT.pdb" />
+    <Content Include="Library\FISCA.UDT.xml" />
+    <Content Include="Library\FISCA.xml" />
+    <Content Include="Library\K12.Data.dll" />
+    <Content Include="Library\K12.Data.pdb" />
+    <Content Include="Library\K12.Data.xml" />
+    <Content Include="Library\K12.Presentation.dll" />
+    <Content Include="Library\K12.Presentation.pdb" />
+    <Content Include="Library\K12.Presentation.xml" />
+    <Content Include="Resources\AccessControlCard-StudentID.xml" />
+    <Content Include="Resources\AccessControlCard-StudentNumber.xml" />
+    <Content Include="Resources\AccessControlCard.xml" />
+    <Content Include="Resources\AccessControlCard_newStudent.xml" />
+    <Content Include="Resources\admissions_close_128.png" />
+    <Content Include="Resources\classmate_config_128.png" />
+    <Content Include="Resources\e-learning_config_128.png" />
+    <Content Include="Resources\find.png" />
+    <Content Include="Resources\Import.Image.png" />
+    <Content Include="Resources\layers_ok_64.png" />
+    <Content Include="Resources\Text_Message-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Validator\RowValidator\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CheckFrom\SMSSendInquiry.resx">
+      <DependentUpon>SMSSendInquiry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAccessControlMapping.resx">
+      <DependentUpon>frmAccessControlMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQueryNoAccessControl.resx">
+      <DependentUpon>frmQueryNoAccessControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQuerySMS.resx">
+      <DependentUpon>frmQuerySMS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSettings.resx">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentExtendControls\AccessStudentItem.resx">
+      <DependentUpon>AccessStudentItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utility\CompleteForm.resx">
+      <DependentUpon>CompleteForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

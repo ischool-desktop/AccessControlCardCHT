@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="format.xsl" ?>
+<ValidateRule Name="卡號及手機號碼資料">
+  <DuplicateDetection>
+    <Detector Name="學號">
+      <Field Name="學號" />
+    </Detector>
+    <Detector Name="卡號" IsImportKey="False">
+      <Field Name="卡號" />
+    </Detector>
+  </DuplicateDetection>
+  <FieldList>
+    <!--
+        系統編號(自動產生，可看不可以改)、學號、班級、座號、姓名、卡號、簡訊手機。使用者可以匯入批次修改。可以系統編號、學號做為匯入的鍵值。
+卡號不得重覆。
+        -->
+
+    <!-- 學生系統編號 2013/9/24 - 俊威註解
+    	<Field Required="True" EmptyAlsoValidate="False" Name="學生系統編號" Description="學生系統編號">
+            
+        </Field> -->
+
+    <Field Required="True" Name="學號" Description="學號">
+      <Validate AutoCorrect="False" Description="「學號」不允許空白。" ErrorType="Error" Validator="不可空白" When=""/>
+      <Validate AutoCorrect="False" Description="「學號」長度必須小於12個文字。" ErrorType="Error" Validator="文字12" When=""/>
+      <Validate AutoCorrect="False" Description="「學號」不存在於系統中。" ErrorType="Error" Validator="學號是否存在系統" When=""/>
+      <Validate AutoCorrect="False" Description="「學號」建議使用英文數字組合(A~Z a~z 0~9 不包含空白)。" ErrorType="Warning" Validator="多個英數字元" When=""/>
+      <Validate AutoCorrect="False" Description="「學號」於系統內有多名學生。" ErrorType="Error" Validator="學號是否重覆" When=""/>
+      <Validate AutoCorrect="False" Description="「學號」於系統內必須是一般或延修生。" ErrorType="Error" Validator="學號必須是一般生" When=""/>
+    </Field>
+
+    <Field EmptyAlsoValidate="False" Required="True" Name="行動電話" Description="行動電話">
+      <Validate AutoCorrect="False" Description="「行動電話」空白將無法發送簡訊。" ErrorType="Warning" Validator="不可空白" When=""/>
+      <Validate AutoCorrect="False" Description="「行動電話」長度一般為10碼" ErrorType="Warning" Validator="文字為10" When=""/>
+      <Validate AutoCorrect="False" Description="「行動電話」必須使用數字組合(0~9 不包含空白)。" ErrorType="Error" Validator="必須是數字組合" When=""/>
+    </Field>
+
+    <Field Required="True" Name="卡號" Description="卡號">
+      <Validate AutoCorrect="False" Description="「卡號」不允許空白。" ErrorType="Error" Validator="不可空白" When=""/>
+    </Field>
+
+  </FieldList>
+  <ValidatorList>
+    <FieldValidator Name="學號是否存在系統" Type="STUDENTNUMBEREXISTENCE_CHT"/>
+    <FieldValidator Name="學號是否重覆" Type="STUDENTNUMBERREPEAT_CHT"/>
+    <FieldValidator Name="學號必須是一般生" Type="STUDENTNUMBERSTATUS_CHT"/>
+    <FieldValidator Name="不可空白" Type="STRINGLENGTH">
+      <MinLength>1</MinLength>
+    </FieldValidator>
+    <FieldValidator Name="文字12" Type="STRINGLENGTH">
+      <MinLength>0</MinLength>
+      <MaxLength>12</MaxLength>
+    </FieldValidator>
+    <FieldValidator Name="文字為10" Type="STRINGLENGTH">
+      <MinLength>10</MinLength>
+      <MaxLength>10</MaxLength>
+    </FieldValidator>
+    <FieldValidator Name="必須是數字組合" Type="Regex">
+      <ValidPattern>
+        <![CDATA[^[0-9]+$]]> <!-- 正規表示法 -->
+      </ValidPattern>
+    </FieldValidator>
+    <FieldValidator Name="多個英數字元" Type="Regex">
+      <ValidPattern>
+        <![CDATA[^[A-Za-z0-9]+$]]> <!-- 正規表示法 -->
+      </ValidPattern>
+    </FieldValidator>
+    <FieldValidator Name="Integer極限" Type="Integer">
+      <MinValue>0</MinValue>
+      <MaxValue>2000000000</MaxValue>
+    </FieldValidator>
+
+    <RowValidator Name="檢查卡號是否重覆" Type="CARDNOCHECK_CHT" />
+    <RowValidator Name="檢查卡號是否多人使用" Type="CARDNOCHECK_DOUBLE_CHT" />
+  </ValidatorList>
+  <RowValidate>
+    <Validate AutoCorrect="False" Description="「卡號」於系統內重覆,匯入將會把重覆之資料移除。" ErrorType="Warning" Validator="檢查卡號是否重覆" When=""/>
+    <Validate AutoCorrect="False" Description="「卡號」有2名以上學生使用,匯入將會把重覆之資料移除。" ErrorType="Warning" Validator="檢查卡號是否多人使用" When=""/>
+  </RowValidate>
+  <ConditionList/>
+</ValidateRule>

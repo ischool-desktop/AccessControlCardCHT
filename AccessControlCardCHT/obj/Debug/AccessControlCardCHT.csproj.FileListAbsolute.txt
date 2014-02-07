@@ -1,0 +1,15 @@
+D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\obj\Debug\ResolveAssemblyReference.cache
+D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\obj\Debug\AccessControlCardCHT.SMSSendInquiry.resources
+D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\obj\Debug\AccessControlCardCHT.frmAccessControlMapping.resources
+D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\obj\Debug\AccessControlCardCHT.frmQueryNoAccessControl.resources
+D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\obj\Debug\AccessControlCardCHT.frmQuerySMS.resources
+D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\obj\Debug\AccessControlCardCHT.frmSettings.resources
+D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\obj\Debug\AccessControlCardCHT.Properties.Resources.resources
+D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\obj\Debug\AccessControlCardCHT.AccessStudentItem.resources
+D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\obj\Debug\AccessControlCardCHT.CompleteForm.resources
+D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\obj\Debug\GenerateResource.read.1.tlog
+D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\obj\Debug\GenerateResource.write.1.tlog
+D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\bin\Debug\AccessControlCardCHT.dll
+D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\bin\Debug\AccessControlCardCHT.pdb
+D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\obj\Debug\AccessControlCardCHT.dll
+D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\obj\Debug\AccessControlCardCHT.pdb
