@@ -9,9 +9,9 @@ namespace AccessControlCardCHT
             StudentNumber = Row.Field<string>("student_number");
             StudentName = Row.Field<string>("name");
             SendTime = Row.Field<string>("send_time");
-            TargetPhone = Row.Field<string>("target_phone");
-            SMSContent = Row.Field<string>("sms_content");
-            Status = Row.Field<string>("status");
+            TargetPhone = Row.Field<string>("cell_phone");
+            SMSContent = Row.Field<string>("send_message");
+            Status = Row.Field<string>("cht_status");
             CardNo = Row.Field<string>("card_no");
 
             if (Status.Equals("0"))

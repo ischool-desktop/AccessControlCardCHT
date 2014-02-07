@@ -252,9 +252,13 @@
     <Content Include="Library\K12.Presentation.dll" />
     <Content Include="Library\K12.Presentation.pdb" />
     <Content Include="Library\K12.Presentation.xml" />
-    <Content Include="Resources\AccessControlCard-StudentID.xml" />
+    <Content Include="Resources\AccessControlCard-StudentID.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Resources\AccessControlCard-StudentNumber.xml" />
-    <Content Include="Resources\AccessControlCard.xml" />
+    <Content Include="Resources\AccessControlCard.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Resources\AccessControlCard_newStudent.xml" />
     <Content Include="Resources\admissions_close_128.png" />
     <Content Include="Resources\classmate_config_128.png" />

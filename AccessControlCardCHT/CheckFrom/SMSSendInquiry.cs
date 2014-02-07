@@ -33,26 +33,21 @@ namespace AccessControlCardCHT
                 List<SMSInquirtRecord> SMSList = new List<SMSInquirtRecord>();
 
                 StringBuilder sb = new StringBuilder();
-                sb.Append("select student.id,student_number,class.class_name,seat_no,name,$cht_access_control_card.student_cardno.card_no,");
-                sb.Append("$cht_access_control_card.history.use_time,$cht_access_control_card.history.oclock_name,");
-                sb.Append("$cht_access_control_card.history.use_type ");
+                sb.Append("select student.id,student_number,class.class_name,seat_no,name,card_no,use_time,oclock_name,use_type ");                
+                
 
                 //來自student
                 //join class
                 sb.Append("from student left outer join class on class.id=student.ref_class_id ");
-                //join access_control_card.student_cardno
-                sb.Append("inner join $cht_access_control_card.student_cardno on $cht_access_control_card.student_cardno.ref_student_id=student.id ");
-                //join access_control_card.history
-                sb.Append("left outer join $cht_access_control_card.history ");
-                sb.Append("on $cht_access_control_card.history.card_no=$cht_access_control_card.student_cardno.card_no ");
-
+                //join cht_access_control_card.history
+                sb.Append("left join $cht_access_control_card.history on $cht_access_control_card.history.ref_student_id=student.id ");
                 //卡號不得為null
-                sb.Append("where $cht_access_control_card.student_cardno is not null ");
+                sb.Append("where card_no is not null ");
 
                 //卡號 / 學號 / 姓名
                 if (!string.IsNullOrEmpty(textBoxX1.Text.Trim()))
                 {
-                    sb.Append(string.Format("and ($cht_access_control_card.student_cardno.card_no like '%{0}%' ", textBoxX1.Text.Trim()));
+                    sb.Append(string.Format("and (card_no like '%{0}%' ", textBoxX1.Text.Trim()));
                     sb.Append(string.Format("or student_number like '%{0}%' ", textBoxX1.Text.Trim()));
                     sb.Append(string.Format("or name like '%{0}%') ", textBoxX1.Text.Trim()));
                 }
@@ -81,6 +76,21 @@ namespace AccessControlCardCHT
                 {
                     SMSInquirtRecord sms = new SMSInquirtRecord(row);
                     SMSList.Add(sms);
+                }
+
+                // 找出有刷卡，找不到學生id 與電話的卡號
+                StringBuilder sbstrSQL = new StringBuilder();
+                sbstrSQL.Append("select  '' as id,'' as student_number,'' as class_name,'' as seat_no,'' as name,card_no,use_time,oclock_name,use_type from $cht_access_control_card.history where card_no is not null and (ref_student_id is null or cell_phone is null) ");
+                sbstrSQL.Append(string.Format("and ($cht_access_control_card.history.use_time>='{0}' ", dateTimeInput1.Value.ToShortDateString()));
+                sbstrSQL.Append(string.Format("and $cht_access_control_card.history.use_time<='{0}')", dateTimeInput2.Value.AddDays(1).ToShortDateString()));
+
+
+                FISCA.Data.QueryHelper nidQury = new FISCA.Data.QueryHelper();
+                DataTable noIDdt = nidQury.Select(sbstrSQL.ToString());
+                foreach (DataRow row in noIDdt.Rows)
+                {
+                    SMSInquirtRecord smsn = new SMSInquirtRecord(row);
+                    SMSList.Add(smsn);
                 }
 
                 SMSList.Sort(SortDateTime);

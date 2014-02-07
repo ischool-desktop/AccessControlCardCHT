@@ -26,7 +26,7 @@ namespace AccessControlCardCHT
 
                 QueryHelper helper = new QueryHelper();
 
-                string strSQL = "select student.student_number,student.name,to_char(send_date,'YYYY/MM/DD') as send_time,cell_phone,send_message, cht_status,card_no from $cht_access_control_card.history inner join student on student.id=$cht_access_control_card.history.ref_student_id where cht_msg_id='0' and use_time>='" + dteStart.Value.ToShortDateString() + "' and use_time<='" + dteEnd.Value.AddDays(1).ToShortDateString() + "'";
+                string strSQL = "select student.student_number,student.name,to_char(send_date,'YYYY/MM/DD') as send_time,cell_phone,send_message, cht_status,card_no from $cht_access_control_card.history inner join student on student.id=$cht_access_control_card.history.ref_student_id where card_no is not null and use_time>='" + dteStart.Value.ToShortDateString() + "' and use_time<='" + dteEnd.Value.AddDays(1).ToShortDateString() + "'";
 
                 DataTable table = helper.Select(strSQL);
 
