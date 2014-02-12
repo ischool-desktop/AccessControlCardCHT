@@ -78,7 +78,7 @@
             this.colAccessCard});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -384,8 +384,7 @@
             this.MaximizeBox = true;
             this.MinimizeBox = true;
             this.Name = "frmAccessControlMapping";
-            this.Text = "";
-            this.TitleText = "維護門禁系統對應資料";
+            this.Text = "維護門禁系統對應資料";
             this.Load += new System.EventHandler(this.AccessControlMapping_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdStudentList)).EndInit();
             this.groupPanel1.ResumeLayout(false);

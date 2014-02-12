@@ -11,17 +11,12 @@ namespace AccessControlCardCHT
             SendTime = Row.Field<string>("send_time");
             TargetPhone = Row.Field<string>("cell_phone");
             SMSContent = Row.Field<string>("send_message");
-            Status = Row.Field<string>("cht_status");
+            Status = Row.Field<string>("cht_message");
             CardNo = Row.Field<string>("card_no");
-
-            if (Status.Equals("0"))
-                Status = "待傳送";
-            else if (Status.Equals("1"))
-                Status = "已傳送";
-            else if (Status.Equals("2"))
-                Status = "傳送失敗";
-            else
-                Status = "狀態未明";
+            UID = Row.Field<string>("uid");
+            ChtMsgID = Row.Field<string>("cht_msg_id");
+            ChtStatus = Row.Field<string>("cht_status");
+            ChtChkDate=Row.Field<string>("cht_chk_date");            
         }
 
         public string StudentNumber { get; set; }
@@ -37,5 +32,14 @@ namespace AccessControlCardCHT
         public string CardNo { get; set; }
 
         public string SMSContent { get; set; }
+
+        public string UID { get; set; }
+
+        public string ChtMsgID { get; set; }
+
+        public string ChtStatus { get; set; }
+
+        public string ChtChkDate { get; set; }
+        
     }
 }

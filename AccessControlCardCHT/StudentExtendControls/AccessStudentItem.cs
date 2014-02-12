@@ -20,7 +20,7 @@ namespace AccessControlCardCHT
 {
     //社團的學生增減
     //必須有另一個背景模式進行處理
-    [FISCA.Permission.FeatureCode("AccessControlCardCHT.StudentExtendControls.AccessStudent.cs", "門禁刷卡歷程")]
+    [FISCA.Permission.FeatureCode("AccessControlCardCHT.StudentExtendControls.AccessStudent.cs", "門禁刷卡歷程(中華電信)")]
     public partial class AccessStudentItem : DetailContentBase
     {
         /// <summary>
@@ -50,7 +50,7 @@ namespace AccessControlCardCHT
         {
             InitializeComponent();
 
-            Group = "門禁刷卡歷程";
+            Group = "門禁刷卡歷程(中華電信)";
 
             UserPermission = UserAcl.Current[FISCA.Permission.FeatureCodeAttribute.GetCode(GetType())];
             this.Enabled = UserPermission.Editable;

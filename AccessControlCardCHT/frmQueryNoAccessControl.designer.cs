@@ -54,6 +54,7 @@
             // btnExport
             // 
             this.btnExport.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnExport.BackColor = System.Drawing.Color.Transparent;
             this.btnExport.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnExport.Location = new System.Drawing.Point(13, 484);
@@ -81,6 +82,9 @@
             // 
             this.grdSutdentList.AllowUserToAddRows = false;
             this.grdSutdentList.AllowUserToDeleteRows = false;
+            this.grdSutdentList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grdSutdentList.BackgroundColor = System.Drawing.Color.White;
             this.grdSutdentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdSutdentList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -93,7 +97,7 @@
             this.colRecordDateTime});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -157,6 +161,7 @@
             // buttonX3
             // 
             this.buttonX3.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonX3.BackColor = System.Drawing.Color.Transparent;
             this.buttonX3.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonX3.Location = new System.Drawing.Point(652, 484);
@@ -347,9 +352,9 @@
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnQuery);
             this.Controls.Add(this.grdSutdentList);
+            this.DoubleBuffered = true;
             this.Name = "frmQueryNoAccessControl";
-            this.Text = "";
-            this.TitleText = "查詢未刷卡學生";
+            this.Text = "查詢未刷卡學生";
             this.Load += new System.EventHandler(this.frmQueryNoAccessControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdSutdentList)).EndInit();
             this.groupPanel1.ResumeLayout(false);

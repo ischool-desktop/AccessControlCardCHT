@@ -28,10 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dteStart = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.dteEnd = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.grdSMSQueqe = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.btnQuery = new DevComponents.DotNetBar.ButtonX();
+            this.btnExport = new DevComponents.DotNetBar.ButtonX();
+            this.btnExit = new DevComponents.DotNetBar.ButtonX();
+            this.chkSendError = new System.Windows.Forms.CheckBox();
+            this.reSend = new DevComponents.DotNetBar.ButtonX();
+            this.lblMsg = new DevComponents.DotNetBar.LabelX();
             this.colStudentNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDeliveryDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,11 +47,8 @@
             this.colCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSMSMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.btnQuery = new DevComponents.DotNetBar.ButtonX();
-            this.btnExport = new DevComponents.DotNetBar.ButtonX();
-            this.btnExit = new DevComponents.DotNetBar.ButtonX();
+            this.colUseTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkDbR = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dteStart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dteEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSMSQueqe)).BeginInit();
@@ -100,6 +105,7 @@
             this.dteStart.Size = new System.Drawing.Size(130, 25);
             this.dteStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dteStart.TabIndex = 0;
+            this.dteStart.ValueChanged += new System.EventHandler(this.dteStart_ValueChanged);
             // 
             // dteEnd
             // 
@@ -152,12 +158,16 @@
             this.dteEnd.Size = new System.Drawing.Size(130, 25);
             this.dteEnd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dteEnd.TabIndex = 1;
+            this.dteEnd.ValueChanged += new System.EventHandler(this.dteEnd_ValueChanged);
             // 
             // grdSMSQueqe
             // 
             this.grdSMSQueqe.AllowUserToAddRows = false;
             this.grdSMSQueqe.AllowUserToDeleteRows = false;
-            this.grdSMSQueqe.AllowUserToResizeColumns = false;
+            this.grdSMSQueqe.AllowUserToOrderColumns = true;
+            this.grdSMSQueqe.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grdSMSQueqe.BackgroundColor = System.Drawing.Color.White;
             this.grdSMSQueqe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdSMSQueqe.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -167,22 +177,140 @@
             this.colPhone,
             this.colCard,
             this.colStatus,
-            this.colSMSMessage});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdSMSQueqe.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colSMSMessage,
+            this.colUseTime});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdSMSQueqe.DefaultCellStyle = dataGridViewCellStyle3;
             this.grdSMSQueqe.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.grdSMSQueqe.Location = new System.Drawing.Point(12, 48);
             this.grdSMSQueqe.Name = "grdSMSQueqe";
             this.grdSMSQueqe.ReadOnly = true;
             this.grdSMSQueqe.RowTemplate.Height = 24;
-            this.grdSMSQueqe.Size = new System.Drawing.Size(718, 413);
+            this.grdSMSQueqe.Size = new System.Drawing.Size(799, 413);
             this.grdSMSQueqe.TabIndex = 2;
+            // 
+            // labelX1
+            // 
+            this.labelX1.AutoSize = true;
+            this.labelX1.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.Class = "";
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Location = new System.Drawing.Point(14, 14);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(60, 21);
+            this.labelX1.TabIndex = 3;
+            this.labelX1.Text = "開始日期";
+            // 
+            // labelX2
+            // 
+            this.labelX2.AutoSize = true;
+            this.labelX2.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.Class = "";
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(239, 14);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(60, 21);
+            this.labelX2.TabIndex = 4;
+            this.labelX2.Text = "結束日期";
+            // 
+            // btnQuery
+            // 
+            this.btnQuery.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuery.AutoSize = true;
+            this.btnQuery.BackColor = System.Drawing.Color.Transparent;
+            this.btnQuery.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnQuery.Location = new System.Drawing.Point(736, 12);
+            this.btnQuery.Name = "btnQuery";
+            this.btnQuery.Size = new System.Drawing.Size(75, 25);
+            this.btnQuery.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnQuery.TabIndex = 5;
+            this.btnQuery.Text = "查詢";
+            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
+            // 
+            // btnExport
+            // 
+            this.btnExport.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExport.AutoSize = true;
+            this.btnExport.BackColor = System.Drawing.Color.Transparent;
+            this.btnExport.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnExport.Location = new System.Drawing.Point(12, 473);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(145, 25);
+            this.btnExport.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnExport.TabIndex = 6;
+            this.btnExport.Text = "匯出門禁簡訊發送記錄";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.AutoSize = true;
+            this.btnExit.BackColor = System.Drawing.Color.Transparent;
+            this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnExit.Location = new System.Drawing.Point(736, 473);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 25);
+            this.btnExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnExit.TabIndex = 18;
+            this.btnExit.Text = "離開";
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // chkSendError
+            // 
+            this.chkSendError.AutoSize = true;
+            this.chkSendError.BackColor = System.Drawing.Color.Transparent;
+            this.chkSendError.Location = new System.Drawing.Point(456, 14);
+            this.chkSendError.Name = "chkSendError";
+            this.chkSendError.Size = new System.Drawing.Size(118, 21);
+            this.chkSendError.TabIndex = 19;
+            this.chkSendError.Text = "只顯示傳送失敗";
+            this.chkSendError.UseVisualStyleBackColor = false;
+            this.chkSendError.CheckedChanged += new System.EventHandler(this.chkSendError_CheckedChanged);
+            // 
+            // reSend
+            // 
+            this.reSend.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.reSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.reSend.AutoSize = true;
+            this.reSend.BackColor = System.Drawing.Color.Transparent;
+            this.reSend.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.reSend.Location = new System.Drawing.Point(655, 473);
+            this.reSend.Name = "reSend";
+            this.reSend.Size = new System.Drawing.Size(75, 25);
+            this.reSend.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.reSend.TabIndex = 20;
+            this.reSend.Text = "重新傳送";
+            this.reSend.Click += new System.EventHandler(this.reSend_Click);
+            // 
+            // lblMsg
+            // 
+            this.lblMsg.AutoSize = true;
+            this.lblMsg.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.lblMsg.BackgroundStyle.Class = "";
+            this.lblMsg.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblMsg.Location = new System.Drawing.Point(164, 474);
+            this.lblMsg.Name = "lblMsg";
+            this.lblMsg.Size = new System.Drawing.Size(53, 21);
+            this.lblMsg.TabIndex = 21;
+            this.lblMsg.Text = "labelX3";
             // 
             // colStudentNumber
             // 
@@ -237,81 +365,33 @@
             this.colSMSMessage.ReadOnly = true;
             this.colSMSMessage.Width = 130;
             // 
-            // labelX1
+            // colUseTime
             // 
-            this.labelX1.AutoSize = true;
-            this.labelX1.BackColor = System.Drawing.Color.Transparent;
+            this.colUseTime.HeaderText = "刷卡時間";
+            this.colUseTime.Name = "colUseTime";
+            this.colUseTime.ReadOnly = true;
             // 
+            // chkDbR
             // 
-            // 
-            this.labelX1.BackgroundStyle.Class = "";
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(14, 14);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(60, 21);
-            this.labelX1.TabIndex = 3;
-            this.labelX1.Text = "開始日期";
-            // 
-            // labelX2
-            // 
-            this.labelX2.AutoSize = true;
-            this.labelX2.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX2.BackgroundStyle.Class = "";
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(239, 14);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(60, 21);
-            this.labelX2.TabIndex = 4;
-            this.labelX2.Text = "結束日期";
-            // 
-            // btnQuery
-            // 
-            this.btnQuery.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnQuery.BackColor = System.Drawing.Color.Transparent;
-            this.btnQuery.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnQuery.Location = new System.Drawing.Point(655, 12);
-            this.btnQuery.Name = "btnQuery";
-            this.btnQuery.Size = new System.Drawing.Size(75, 25);
-            this.btnQuery.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnQuery.TabIndex = 5;
-            this.btnQuery.Text = "查詢";
-            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
-            // 
-            // btnExport
-            // 
-            this.btnExport.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnExport.AutoSize = true;
-            this.btnExport.BackColor = System.Drawing.Color.Transparent;
-            this.btnExport.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExport.Location = new System.Drawing.Point(12, 473);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(145, 25);
-            this.btnExport.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnExport.TabIndex = 6;
-            this.btnExport.Text = "匯出門禁簡訊發送記錄";
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnExit.BackColor = System.Drawing.Color.Transparent;
-            this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExit.Location = new System.Drawing.Point(655, 473);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 25);
-            this.btnExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnExit.TabIndex = 18;
-            this.btnExit.Text = "離開";
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.chkDbR.AutoSize = true;
+            this.chkDbR.BackColor = System.Drawing.Color.Transparent;
+            this.chkDbR.Location = new System.Drawing.Point(582, 14);
+            this.chkDbR.Name = "chkDbR";
+            this.chkDbR.Size = new System.Drawing.Size(118, 21);
+            this.chkDbR.TabIndex = 22;
+            this.chkDbR.Text = "只顯示沒有傳送";
+            this.chkDbR.UseVisualStyleBackColor = false;
+            this.chkDbR.CheckedChanged += new System.EventHandler(this.chkDbR_CheckedChanged);
             // 
             // frmQuerySMS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(742, 506);
+            this.ClientSize = new System.Drawing.Size(823, 506);
+            this.Controls.Add(this.chkDbR);
+            this.Controls.Add(this.lblMsg);
+            this.Controls.Add(this.reSend);
+            this.Controls.Add(this.chkSendError);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnQuery);
@@ -320,9 +400,9 @@
             this.Controls.Add(this.grdSMSQueqe);
             this.Controls.Add(this.dteEnd);
             this.Controls.Add(this.dteStart);
+            this.DoubleBuffered = true;
             this.Name = "frmQuerySMS";
-            this.Text = "";
-            this.TitleText = "查詢門禁簡訊發送記錄";
+            this.Text = "查詢門禁簡訊發送記錄";
             this.Load += new System.EventHandler(this.QuerySMS_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dteStart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dteEnd)).EndInit();
@@ -342,6 +422,9 @@
         private DevComponents.DotNetBar.ButtonX btnQuery;
         private DevComponents.DotNetBar.ButtonX btnExport;
         private DevComponents.DotNetBar.ButtonX btnExit;
+        private System.Windows.Forms.CheckBox chkSendError;
+        private DevComponents.DotNetBar.ButtonX reSend;
+        private DevComponents.DotNetBar.LabelX lblMsg;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStudentNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStudentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDeliveryDateTime;
@@ -349,5 +432,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colCard;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSMSMessage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUseTime;
+        private System.Windows.Forms.CheckBox chkDbR;
     }
 }

@@ -117,7 +117,7 @@ namespace AccessControlCardCHT
             detail2.Add(new ReportFeature(Permissions.匯入卡號及手機號碼_新生, "匯入卡號及手機號碼(系統編號)"));
 
             Catalog detail1 = RoleAclSource.Instance["學生"]["資料項目"];
-            detail1.Add(new DetailItemFeature(Permissions.門禁刷卡歷程, "門禁刷卡歷程"));
+            detail1.Add(new DetailItemFeature(Permissions.門禁刷卡歷程, "門禁刷卡歷程(中華電信)"));
         }
     }
 }

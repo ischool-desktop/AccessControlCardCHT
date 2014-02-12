@@ -293,6 +293,7 @@
             this.Controls.Add(this.groupPanel1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSave);
+            this.DoubleBuffered = true;
             this.Name = "frmSettings";
             this.Text = "發送設定";
             this.Load += new System.EventHandler(this.Settings_Load);

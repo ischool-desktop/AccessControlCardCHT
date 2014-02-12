@@ -113,6 +113,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -128,6 +130,7 @@
     <Compile Include="CheckFrom\SMSSendInquiry.designer.cs">
       <DependentUpon>SMSSendInquiry.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\DALTransfer.cs" />
     <Compile Include="DAL\NoAccessControlRecord.cs" />
     <Compile Include="DAL\SMSRecord.cs" />
     <Compile Include="DAL\StudentCard.cs" />
