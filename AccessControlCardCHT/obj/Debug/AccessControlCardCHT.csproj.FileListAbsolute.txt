@@ -13,3 +13,4 @@ D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\bin\D
 D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\bin\Debug\AccessControlCardCHT.pdb
 D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\obj\Debug\AccessControlCardCHT.dll
 D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\obj\Debug\AccessControlCardCHT.pdb
+D:\GitProjModules\ischoolDesktop\AccessControlCardCHT\AccessControlCardCHT\obj\Debug\AccessControlCardCHT.formSetCHTAccount.resources

@@ -174,5 +174,12 @@ namespace AccessControlCardCHT
                 FISCA.LogAgent.ApplicationLog.Log("門禁系統", "修改", sb.ToString());
             }
         }
+
+        private void btnSetAccount_Click(object sender, EventArgs e)
+        {
+            // 設定中華電信簡訊帳號密碼
+            formSetCHTAccount formCHT = new formSetCHTAccount();
+            formCHT.ShowDialog();
+        }
     }
 }

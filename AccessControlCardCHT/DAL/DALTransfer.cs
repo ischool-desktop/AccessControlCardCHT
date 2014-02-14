@@ -34,14 +34,14 @@ namespace AccessControlCardCHT.DAL
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static AccessControlCardHistory SendCHTSMSData(AccessControlCardHistory data)
+        public static AccessControlCardHistory SendCHTSMSData(AccessControlCardHistory data,string Account,string Password)
         {
            // 取得中華電信回傳代碼Dict
             Dictionary<string, string> CHTRCodeDict = CHTReturnCodeDict();
             // 測試帳號
-            string account = "14525";
+            string account = Account;//"14525";
             // 測試密碼
-            string password = "14525";
+            string password = Password;//"14525";
 
             // 訊息編碼 
             string msg = HttpUtility.UrlEncode(data.SendMessage, System.Text.Encoding.Default);
@@ -166,5 +166,23 @@ namespace AccessControlCardCHT.DAL
             CodeDic.Add("55", "http (port 8008) 連線不允許使用 GET 方法，請改用 POST 或改為 https(port 4443) 連線。");
             return CodeDic;        
         }
+
+        /// <summary>
+        /// 取得中華電信設定帳號密碼
+        /// </summary>
+        /// <returns></returns>
+        public static ChtAccount GetChtAccountInfo()
+        {
+            ChtAccount retVal = null;
+            AccessHelper accessHelper = new AccessHelper();
+            List<ChtAccount> data = accessHelper.Select<ChtAccount>();
+            // 當有資料取第一筆
+            if (data.Count > 0)          
+                retVal = data[0];
+            
+            
+            return retVal;
+        }
+
     }
 }

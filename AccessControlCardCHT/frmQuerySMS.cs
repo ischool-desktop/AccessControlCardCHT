@@ -171,6 +171,16 @@ namespace AccessControlCardCHT
                     // 需要回寫UDT資料
                     List<AccessControlCardHistory> updateAccessControlCardHistoryList = new List<AccessControlCardHistory>();
 
+                    // 取得中華電信帳號密碼
+                    string Account = "";
+                    string Passowrd = "";
+                    ChtAccount user = DAL.DALTransfer.GetChtAccountInfo();
+                    if (user != null)
+                    {
+                        Account = user.Account;
+                        Passowrd = user.Password;
+                    }
+
                     // 處理 DataGridRow 需要傳送簡訊資料
                     foreach (DataRow dr in sendDataRowList)
                     {
@@ -183,7 +193,7 @@ namespace AccessControlCardCHT
                         if (AccessControlCardHistoryDict.ContainsKey(uidIdx))
                         {
                             // 傳送簡訊資料
-                            updateAccessControlCardHistoryList.Add(DAL.DALTransfer.SendCHTSMSData(AccessControlCardHistoryDict[uidIdx]));
+                            updateAccessControlCardHistoryList.Add(DAL.DALTransfer.SendCHTSMSData(AccessControlCardHistoryDict[uidIdx],Account,Passowrd));
                         }
                     }
 

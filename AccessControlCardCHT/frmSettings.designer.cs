@@ -40,6 +40,7 @@
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.txtErrorPhone = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.chkEnableErrorSMS = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.btnSetAccount = new DevComponents.DotNetBar.ButtonX();
             this.groupPanel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -284,11 +285,26 @@
             this.chkEnableErrorSMS.Text = "發送異常通知";
             this.chkEnableErrorSMS.CheckedChanged += new System.EventHandler(this.chkEnableErrorSMS_CheckedChanged);
             // 
+            // btnSetAccount
+            // 
+            this.btnSetAccount.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSetAccount.AutoSize = true;
+            this.btnSetAccount.BackColor = System.Drawing.Color.Transparent;
+            this.btnSetAccount.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSetAccount.Location = new System.Drawing.Point(11, 405);
+            this.btnSetAccount.Name = "btnSetAccount";
+            this.btnSetAccount.Size = new System.Drawing.Size(171, 25);
+            this.btnSetAccount.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnSetAccount.TabIndex = 14;
+            this.btnSetAccount.Text = "設定中華電信簡訊帳號密碼";
+            this.btnSetAccount.Click += new System.EventHandler(this.btnSetAccount_Click);
+            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(441, 437);
+            this.Controls.Add(this.btnSetAccount);
             this.Controls.Add(this.groupPanel2);
             this.Controls.Add(this.groupPanel1);
             this.Controls.Add(this.btnExit);
@@ -302,6 +318,7 @@
             this.groupPanel2.ResumeLayout(false);
             this.groupPanel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -319,5 +336,6 @@
         private DevComponents.DotNetBar.LabelX labelX1;
         private DevComponents.DotNetBar.Controls.TextBoxX txtErrorPhone;
         private DevComponents.DotNetBar.Controls.CheckBoxX chkEnableErrorSMS;
+        private DevComponents.DotNetBar.ButtonX btnSetAccount;
     }
 }

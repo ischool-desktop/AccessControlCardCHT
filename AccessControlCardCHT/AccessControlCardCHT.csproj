@@ -134,6 +134,12 @@
     <Compile Include="DAL\NoAccessControlRecord.cs" />
     <Compile Include="DAL\SMSRecord.cs" />
     <Compile Include="DAL\StudentCard.cs" />
+    <Compile Include="formSetCHTAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formSetCHTAccount.Designer.cs">
+      <DependentUpon>formSetCHTAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAccessControlMapping.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,7 @@
     </Compile>
     <Compile Include="UDT\AccessControlCard.cs" />
     <Compile Include="UDT\AccessControlCardHistory.cs" />
+    <Compile Include="UDT\ChtAccount.cs" />
     <Compile Include="UDT\Setting.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="Utility\CompleteForm.cs">
@@ -277,6 +284,9 @@
   <ItemGroup>
     <EmbeddedResource Include="CheckFrom\SMSSendInquiry.resx">
       <DependentUpon>SMSSendInquiry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formSetCHTAccount.resx">
+      <DependentUpon>formSetCHTAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAccessControlMapping.resx">
       <DependentUpon>frmAccessControlMapping.cs</DependentUpon>

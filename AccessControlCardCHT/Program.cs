@@ -40,11 +40,11 @@ namespace AccessControlCardCHT
                 Manager.SyncSchema(new Setting());
                 Manager.SyncSchema(new AccessControlCard());
                 Manager.SyncSchema(new AccessControlCardHistory());
+                Manager.SyncSchema(new ChtAccount());
 
                 cd[name] = "true";
                 cd.Save();
-            }
-
+            }            
             #endregion
 
             //毛毛蟲
