@@ -77,18 +77,91 @@ namespace AccessControlCardCHT
                         Records.Remove(Record);
                 }
 
-                if (chkAttendance.Checked)
+                //if (chkAttendance.Checked)
+                //{
+                //    List<AttendanceRecord> AttendanceRecords = Attendance.SelectByDate(dateTimeInput1.Value, dateTimeInput1.Value);
+
+                //    foreach (AttendanceRecord AttendanceRecord in AttendanceRecords)
+                //    {
+                //        List<NoAccessControlRecord> Record = Records
+                //            .FindAll(x => x.StudentID.Equals(AttendanceRecord.RefStudentID));
+
+                //        Record.ForEach(x => Records.Remove(x));
+                //    }
+                //}
+
+                //需合併的ID清單
+                List<string> mustMerge = new List<string>();
+                
+                Dictionary<string, List<string>> checker = new Dictionary<string,List<string>>();
+
+                Dictionary<string,NoAccessControlRecord> sorter = new Dictionary<string,NoAccessControlRecord>();
+
+                foreach (NoAccessControlRecord elem in Records)
                 {
-                    List<AttendanceRecord> AttendanceRecords = Attendance.SelectByDate(dateTimeInput1.Value, dateTimeInput1.Value);
-
-                    foreach (AttendanceRecord AttendanceRecord in AttendanceRecords)
+                    //以學生ID建立字典
+                    if (!checker.ContainsKey(elem.StudentID))
                     {
-                        List<NoAccessControlRecord> Record = Records
-                            .FindAll(x => x.StudentID.Equals(AttendanceRecord.RefStudentID));
+                        checker.Add(elem.StudentID, new List<string>());
+                    }
 
-                        Record.ForEach(x => Records.Remove(x));
+                    //將刷卡狀態增加到對應學生
+                    if (!checker[elem.StudentID].Contains(elem.Status))
+                    {
+                        checker[elem.StudentID].Add(elem.Status);
+                    }
+
+                    //建立分類用學生字典
+                    if (!sorter.ContainsKey(elem.StudentID))
+                    {
+                        sorter.Add(elem.StudentID, null);
                     }
                 }
+
+                foreach (string id in checker.Keys)
+                {
+                    bool a = false;
+                    bool b = false;
+
+                    //判斷該學生ID是否同時存在到校及離校狀態
+                    foreach (string status in checker[id])
+                    {
+                        if (status == "到校")
+                        {
+                            a = true;
+                        }
+
+                        if (status == "離校")
+                        {
+                            b = true;
+                        }
+                    }
+
+                    //若相同ID同時存在兩種狀態,加入合併清單中
+                    if (a && b)
+                    {
+                        mustMerge.Add(id);
+                    }
+                }
+
+                foreach (NoAccessControlRecord elem in Records)
+                {
+                    //若在合併清單中的ID,該物件狀態修改為"到校&離校"
+                    if (mustMerge.Contains(elem.StudentID))
+                    {
+                        elem.Status = "到校&離校";
+                    }
+
+                    sorter[elem.StudentID] = elem;
+                }
+
+                //重新加入整理後的資料
+                Records.Clear();
+                foreach (NoAccessControlRecord record in sorter.Values)
+                {
+                    Records.Add(record);
+                }
+
                 grdSutdentList.DataSource = Records;
             }
             catch (Exception ex)

@@ -16,7 +16,7 @@ namespace AccessControlCardCHT
         {
             mTask = Task.Factory.StartNew(() =>
             {
-                DataTable table = mQueryHelper.Select("select id,student_number,card_no from student inner join $access_control_card.student_cardno on $access_control_card.student_cardno.ref_student_id=student.id where status=1");
+                DataTable table = mQueryHelper.Select("select id,student_number,card_no from student inner join $cht_access_control_card.student_cardno on $cht_access_control_card.student_cardno.ref_student_id=student.id where status=1");
 
                 foreach (DataRow Row in table.Rows)
                 {
@@ -41,12 +41,28 @@ namespace AccessControlCardCHT
         {
             mTask.Wait();
 
+            string ID = Value.GetValue("學生系統編號");
             string StudentNumber = Value.GetValue("學號");
             string CardNo = Value.GetValue("卡號");
 
             //若卡號不為空白進行檢查
             if (!string.IsNullOrEmpty(CardNo))
             {
+                //學生系統編號
+                if (!string.IsNullOrEmpty(ID))
+                {
+                    //檢查是否有其他學生是否已佔用此卡號
+                    List<StudentCardNo> vStudentCardNos = StudentCardNos
+                        .FindAll(x =>
+                            x.CardNo.Equals(CardNo) &&
+                            !x.StudentID.Equals(ID));
+
+                    if (vStudentCardNos.Count >= 1)
+                    {
+                        return false;
+                    }
+                }
+
                 //學生學號
                 if (!string.IsNullOrEmpty(StudentNumber))
                 {

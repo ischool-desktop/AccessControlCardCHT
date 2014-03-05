@@ -16,7 +16,6 @@ namespace AccessControlCardCHT
     /// </summary>
     public class ImportAccessControlCard_newStudent : ImportWizard
     {
-
         private const string constStudentID = "學生系統編號";
         private const string constMobilePhone = "行動電話";
         private const string constCardNo = "卡號";
@@ -26,17 +25,25 @@ namespace AccessControlCardCHT
         private QueryHelper mQueryHelper = new QueryHelper();
         Dictionary<string, LogObj> _OldDic, _NewDic; //added by Cloud
 
+        //須更新的學生系統編號
+        Dictionary<int, AccessControlCard> _StudentCardDic = new Dictionary<int, AccessControlCard>();
+
         //學生學號 : 學生系統編號
-        private Dictionary<string, string> mStudentNumberIDs = new Dictionary<string, string>();
+        //private Dictionary<string, string> mStudentNumberIDs = new Dictionary<string, string>();
 
         //學生學號 : 學生姓名
-        private Dictionary<string, string> mStudentNumberNameDic = new Dictionary<string, string>();
+        //private Dictionary<string, string> mStudentNumberNameDic = new Dictionary<string, string>();
 
         //學生系統編號 : 學生姓名
-        private Dictionary<string, string> mStudentKeyDic = new Dictionary<string, string>();
+        //private Dictionary<string, string> mStudentKeyDic = new Dictionary<string, string>();
 
         //"系統編號(自動產生，可看不可以改)、學號、班級、座號、姓名、卡號、簡訊手機。使用者可以匯入批次修改。可以系統編號、學號做為匯入的鍵值。
         //卡號不得重覆。"
+
+        public ImportAccessControlCard_newStudent()
+        {
+            this.IsSplit = false;
+        }
 
         public override ImportAction GetSupportActions()
         {
@@ -54,25 +61,34 @@ namespace AccessControlCardCHT
         public override void Prepare(ImportOption Option)
         {
             mOption = Option;
-            DataTable table = mQueryHelper.Select("select id,student_number,name from student where status=1");
-
-            foreach (DataRow row in table.Rows)
+            List<AccessControlCard> StudentCards = mAccessHelper.Select<AccessControlCard>();
+            foreach (AccessControlCard card in StudentCards)
             {
-                string StudentID = "" + row["id"];
-                string StudentNumber = "" + row["student_number"];
-                string Name = "" + row["name"];
-
-                if (!mStudentNumberIDs.ContainsKey(StudentNumber))
+                if (!_StudentCardDic.ContainsKey(card.StudentID))
                 {
-                    mStudentNumberIDs.Add(StudentNumber, StudentID);
-                    mStudentNumberNameDic.Add(StudentNumber, Name);
-                }
-
-                if (!mStudentKeyDic.ContainsKey(StudentID))
-                {
-                    mStudentKeyDic.Add(StudentID, Name);
+                    _StudentCardDic.Add(card.StudentID, card);
                 }
             }
+
+            //DataTable table = mQueryHelper.Select("select id,student_number,name from student where status=1");
+
+            //foreach (DataRow row in table.Rows)
+            //{
+            //    string StudentID = "" + row["id"];
+            //    string StudentNumber = "" + row["student_number"];
+            //    string Name = "" + row["name"];
+
+            //    if (!mStudentNumberIDs.ContainsKey(StudentNumber))
+            //    {
+            //        mStudentNumberIDs.Add(StudentNumber, StudentID);
+            //        mStudentNumberNameDic.Add(StudentNumber, Name);
+            //    }
+
+            //    if (!mStudentKeyDic.ContainsKey(StudentID))
+            //    {
+            //        mStudentKeyDic.Add(StudentID, Name);
+            //    }
+            //}
         }
 
         /// <summary>
@@ -91,62 +107,95 @@ namespace AccessControlCardCHT
                 //儲存更新前的資料
                 SavePreviousData(ids);
 
+                List<AccessControlCard> updateList = new List<AccessControlCard>();
+                List<AccessControlCard> insertList = new List<AccessControlCard>();
+
                 #region 儲存卡號
                 if (IsUpdateCardNo)
                 {
-                    #region 刪除卡號資料
-                    string StudentCondition_check = string.Join("','", StudentCards.Select(x => x.CardNo).ToArray());
-                    List<AccessControlCard> Cards_check = mAccessHelper.Select<AccessControlCard>("card_no in ('" + StudentCondition_check + "')");
-                    if (Cards_check.Count > 0)
-                    {
-                        a.DeletedValues(Cards_check);
-                    }
-                    #endregion
-
-                    #region 刪除學生卡號資料
-                    string StudentCondition = string.Join(",", StudentCards.Select(x => x.StudentID).ToArray());
-                    List<AccessControlCard> Cards_Student = mAccessHelper.Select<AccessControlCard>("ref_student_id in (" + StudentCondition + ")");
-                    if (Cards_Student.Count > 0)
-                    {
-                        a.DeletedValues(Cards_Student);
-                    }
-                    #endregion
-
-                    #region 新增卡號資料
-                    List<AccessControlCard> Cards_insert = new List<AccessControlCard>();
-                    foreach (StudentCard vStudentCard in StudentCards)
+                    foreach (StudentCard each in StudentCards)
                     {
                         AccessControlCard Card = new AccessControlCard();
-                        Card.StudentID = int.Parse(vStudentCard.StudentID);
-                        Card.CardNo = vStudentCard.CardNo;
-                        Cards_insert.Add(Card);
+                        Card.StudentID = int.Parse(each.StudentID);
+                        Card.CardNo = each.CardNo;
+                        Card.CellPhone = each.StudentPhone;
+
+                        if (_StudentCardDic.ContainsKey(Card.StudentID))
+                        {
+                            _StudentCardDic[Card.StudentID].CardNo = Card.CardNo;
+                            _StudentCardDic[Card.StudentID].CellPhone = Card.CellPhone;
+                            updateList.Add(_StudentCardDic[Card.StudentID]);
+                        }
+                        else
+                        {
+                            insertList.Add(Card);
+                        }
                     }
 
-                    //新增卡號的學生
-                    if (Cards_insert.Count > 0)
+                    if (updateList.Count > 0)
                     {
-                        sb.AppendLine("匯入更新「" + Cards_insert.Count + "」筆卡號");
-                        a.InsertValues(Cards_insert);
+                        sb.AppendLine("匯入更新「" + updateList.Count + "」筆卡號資料");
+                        updateList.SaveAll();
                     }
-                    #endregion
+
+                    if (insertList.Count > 0)
+                    {
+                        sb.AppendLine("匯入新增「" + insertList.Count + "」筆卡號資料");
+                        a.InsertValues(insertList);
+                    }
+                //    #region 刪除卡號資料
+                //    string StudentCondition_check = string.Join("','", StudentCards.Select(x => x.CardNo).ToArray());
+                //    List<AccessControlCard> Cards_check = mAccessHelper.Select<AccessControlCard>("card_no in ('" + StudentCondition_check + "')");
+                //    if (Cards_check.Count > 0)
+                //    {
+                //        a.DeletedValues(Cards_check);
+                //    }
+                //    #endregion
+
+                //    #region 刪除學生卡號資料
+                //    string StudentCondition = string.Join(",", StudentCards.Select(x => x.StudentID).ToArray());
+                //    List<AccessControlCard> Cards_Student = mAccessHelper.Select<AccessControlCard>("ref_student_id in (" + StudentCondition + ")");
+                //    if (Cards_Student.Count > 0)
+                //    {
+                //        a.DeletedValues(Cards_Student);
+                //    }
+                //    #endregion
+
+                //    #region 新增卡號資料
+                //    List<AccessControlCard> Cards_insert = new List<AccessControlCard>();
+                //    foreach (StudentCard vStudentCard in StudentCards)
+                //    {
+                //        AccessControlCard Card = new AccessControlCard();
+                //        Card.StudentID = int.Parse(vStudentCard.StudentID);
+                //        Card.CardNo = vStudentCard.CardNo;
+                //        Cards_insert.Add(Card);
+                //    }
+
+                //    //新增卡號的學生
+                //    if (Cards_insert.Count > 0)
+                //    {
+                //        sb.AppendLine("匯入更新「" + Cards_insert.Count + "」筆卡號");
+                //        a.InsertValues(Cards_insert);
+                //    }
+                //    #endregion
                 }
                 #endregion
 
                 #region 儲存行動電話號碼
-                if (IsUpdatePhone)
-                {
-                    List<string> Commands = new List<string>();
+                //if (IsUpdatePhone)
+                //{
+                //    List<string> Commands = new List<string>();
 
-                    foreach (StudentCard vStudentCard in StudentCards)
-                    {
-                        if (!string.IsNullOrEmpty(vStudentCard.StudentPhone)) //如果門號為空,則不更新
-                        {
-                            Commands.Add("UPDATE $cht_access_control_card.student_cardno SET cell_phone='" + vStudentCard.StudentPhone + "' WHERE ref_student_id =" + vStudentCard.StudentID);
-                        }
-                    }
-                    sb.AppendLine("匯入更新「" + Commands.Count + "」筆行動電話");
-                    int Count = mUpdateHelper.Execute(Commands);
-                }
+                //    foreach (StudentCard vStudentCard in StudentCards)
+                //    {
+                //        if (!string.IsNullOrEmpty(vStudentCard.StudentPhone)) //如果門號為空,則不更新
+                //        {
+                //            Commands.Add("UPDATE $cht_access_control_card.student_cardno SET cell_phone='" + vStudentCard.StudentPhone + "' WHERE ref_student_id =" + vStudentCard.StudentID);
+                //        }
+                //    }
+                //    sb.AppendLine("匯入更新「" + Commands.Count + "」筆行動電話");
+                //    int Count = mUpdateHelper.Execute(Commands);
+                //}
                 #endregion
 
                 //儲存現在的資料
@@ -170,8 +219,8 @@ namespace AccessControlCardCHT
             {
                 string StudentID = Row.GetValue(constStudentID);
 
-                if (mStudentKeyDic.ContainsKey(StudentID))
-                {
+                //if (mStudentKeyDic.ContainsKey(StudentID))
+                //{
                     string MobilePhone = Row.Contains(constMobilePhone) ? Row.GetValue(constMobilePhone) : string.Empty;
                     string CardNo = Row.Contains(constCardNo) ? Row.GetValue(constCardNo) : string.Empty;
 
@@ -185,7 +234,7 @@ namespace AccessControlCardCHT
 
                         StudentCards.Add(vStudentCard);
                     }
-                }
+                //}
             }
 
             string s = SaveStudentCards(StudentCards, Rows[0].Contains(constCardNo), Rows[0].Contains(constMobilePhone));

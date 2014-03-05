@@ -222,7 +222,9 @@
     <Content Include="Library\Aspose.Cells.xml" />
     <Content Include="Library\Campus.DocumentValidator.dll" />
     <Content Include="Library\Campus.DocumentValidator.pdb" />
-    <Content Include="Library\Campus.DocumentValidator.xml" />
+    <Content Include="Library\Campus.DocumentValidator.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Library\Campus.Import.dll" />
     <Content Include="Library\Campus.Import.pdb" />
     <Content Include="Library\Campus.Import.xml" />
@@ -248,28 +250,38 @@
     <Content Include="Library\FISCA.pdb" />
     <Content Include="Library\FISCA.Permission.dll" />
     <Content Include="Library\FISCA.Permission.pdb" />
-    <Content Include="Library\FISCA.Permission.xml" />
+    <Content Include="Library\FISCA.Permission.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Library\FISCA.Presentation.dll" />
     <Content Include="Library\FISCA.Presentation.pdb" />
     <Content Include="Library\FISCA.Presentation.xml" />
     <Content Include="Library\FISCA.UDT.dll" />
     <Content Include="Library\FISCA.UDT.pdb" />
     <Content Include="Library\FISCA.UDT.xml" />
-    <Content Include="Library\FISCA.xml" />
+    <Content Include="Library\FISCA.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Library\K12.Data.dll" />
     <Content Include="Library\K12.Data.pdb" />
-    <Content Include="Library\K12.Data.xml" />
+    <Content Include="Library\K12.Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Library\K12.Presentation.dll" />
     <Content Include="Library\K12.Presentation.pdb" />
     <Content Include="Library\K12.Presentation.xml" />
     <Content Include="Resources\AccessControlCard-StudentID.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Resources\AccessControlCard-StudentNumber.xml" />
+    <Content Include="Resources\AccessControlCard-StudentNumber.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Resources\AccessControlCard.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Resources\AccessControlCard_newStudent.xml" />
+    <Content Include="Resources\AccessControlCard_newStudent.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Resources\admissions_close_128.png" />
     <Content Include="Resources\classmate_config_128.png" />
     <Content Include="Resources\e-learning_config_128.png" />
