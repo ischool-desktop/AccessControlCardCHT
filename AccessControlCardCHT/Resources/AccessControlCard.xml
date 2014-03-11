@@ -23,7 +23,9 @@
       <Validate AutoCorrect="False" Description="「學號」不存在於系統中。" ErrorType="Error" Validator="學號是否存在系統" When=""/>
       <Validate AutoCorrect="False" Description="「學號」建議使用英文數字組合(A~Z a~z 0~9 不包含空白)。" ErrorType="Warning" Validator="多個英數字元" When=""/>
       <Validate AutoCorrect="False" Description="「學號」於系統內有多名學生。" ErrorType="Error" Validator="學號是否重覆" When=""/>
+      <!--
       <Validate AutoCorrect="False" Description="「學號」於系統內必須是一般或延修生。" ErrorType="Error" Validator="學號必須是一般生" When=""/>
+      -->
     </Field>
 
     <Field EmptyAlsoValidate="False" Required="True" Name="行動電話" Description="行動電話">
@@ -38,7 +40,9 @@
   <ValidatorList>
     <FieldValidator Name="學號是否存在系統" Type="STUDENTNUMBEREXISTENCE_CHT"/>
     <FieldValidator Name="學號是否重覆" Type="STUDENTNUMBERREPEAT_CHT"/>
+    <!--
     <FieldValidator Name="學號必須是一般生" Type="STUDENTNUMBERSTATUS_CHT"/>
+    -->
     <FieldValidator Name="不可空白" Type="STRINGLENGTH">
       <MinLength>1</MinLength>
     </FieldValidator>

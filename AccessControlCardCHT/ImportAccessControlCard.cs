@@ -97,7 +97,7 @@ namespace AccessControlCardCHT
             //    _DoUpdateIDs.Add(int.Parse(id));
             //}
 
-            DataTable table = mQueryHelper.Select("select id,student_number from student where status=1");
+            DataTable table = mQueryHelper.Select("select id,student_number from student where status in (1,2)");
             foreach (DataRow row in table.Rows)
             {
                 string id = row["id"].ToString();

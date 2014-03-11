@@ -308,7 +308,7 @@ namespace AccessControlCardCHT
                 strBuilder.Append("select student.id,student_number,class.class_name,class.grade_year,seat_no,name, $cht_access_control_card.student_cardno.cell_phone, $cht_access_control_card.student_cardno.card_no from student ");
                 strBuilder.Append(" left outer join class on class.id=student.ref_class_id ");
                 strBuilder.Append(" left outer join  $cht_access_control_card.student_cardno on  $cht_access_control_card.student_cardno.ref_student_id=student.id ");
-                strBuilder.Append(" where student.status=1 and student.name like '%" + txtName.Text + "%' or student.student_number like '%" + txtName.Text + "%' or  $cht_access_control_card.student_cardno.card_no like '%" + txtName.Text + "%'");
+                strBuilder.Append(" where student.status in (1,2) and (student.name like '%" + txtName.Text + "%' or student.student_number like '%" + txtName.Text + "%' or  $cht_access_control_card.student_cardno.card_no like '%" + txtName.Text + "%')");
 
                 string SelectClass = "" + cmbClass.SelectedItem;
                 string SelectGradeYear = "" + cmbGradeYear.SelectedItem;

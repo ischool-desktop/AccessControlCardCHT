@@ -16,7 +16,7 @@ namespace AccessControlCardCHT
         {
             mTask = Task.Factory.StartNew(() =>
             {
-                DataTable table = mQueryHelper.Select("select id,student_number,card_no from student inner join $cht_access_control_card.student_cardno on $cht_access_control_card.student_cardno.ref_student_id=student.id where status=1");
+                DataTable table = mQueryHelper.Select("select id,student_number,card_no from student inner join $cht_access_control_card.student_cardno on $cht_access_control_card.student_cardno.ref_student_id=student.id where status in (1,2)");
 
                 foreach (DataRow Row in table.Rows)
                 {
